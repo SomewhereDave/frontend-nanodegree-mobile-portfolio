@@ -27,6 +27,7 @@
     "gulp-clean-css": "^3.9.3",
     "gulp-plumber": "^1.2.0",
     "gulp-rename": "^1.2.2",
+    "gulp-responsive": "^2.10.0",
     "gulp-uglify": "^3.0.0"
   },
   "dependencies": {

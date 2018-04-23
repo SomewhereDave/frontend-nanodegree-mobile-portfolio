@@ -5,7 +5,20 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'), //Rename files
     minifyCSS = require('gulp-clean-css'), //Minify CSS using clean-css
     plumber = require('gulp-plumber'), //Prevent pipe breaking caused by errors from gulp plugins
+    responsive = require('gulp-responsive'), //Responsive images
     browserSync = require('browser-sync').create(); //Synchronised browser testing
+
+//Copy files that will stay untouched
+gulp.task('copy', function() {
+	gulp.src('views/*')
+		.pipe(gulp.dest('build/views/'));
+
+	gulp.src('*.html')
+		.pipe(gulp.dest('build/'));
+
+	gulp.src('img/*')
+		.pipe(gulp.dest('build/img/'));			
+});
 
 gulp.task('scripts', function(){
   gulp.src('js/perfmatters.js')
@@ -28,6 +41,16 @@ gulp.task('styles', function(){
       .pipe(gulp.dest('./build/css/'));
 });
 
+gulp.task('responsive', function(){
+	gulp.src('views/images/*.jpg')
+		.pipe(responsive({
+			'pizzeria.jpg': {
+				width: 100
+			}
+		}))
+		.pipe(gulp.dest('build/views/images'));
+});
+
 // Static server
 gulp.task('browser-sync', function() {
   browserSync.init({
@@ -40,6 +63,7 @@ gulp.task('browser-sync', function() {
 gulp.task('watch', function() {
   gulp.watch('js/*.js', ['scripts',browserSync.reload]); //Reload browser on change
   gulp.watch('css/*.css', ['styles',browserSync.reload]);
+  gulp.watch('*.html', browserSync.reload);
 });
 
-gulp.task('default', ['scripts', 'styles', 'browser-sync', 'watch']);
+gulp.task('default', ['copy', 'scripts', 'styles','responsive', 'browser-sync', 'watch']);
