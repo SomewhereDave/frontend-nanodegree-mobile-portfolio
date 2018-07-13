@@ -23,11 +23,14 @@
   },
   "homepage": "https://github.com/udacity/frontend-nanodegree-mobile-portfolio#readme",
   "devDependencies": {
+    "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.9.3",
+    "gulp-htmlclean": "^2.7.22",
+    "gulp-inject": "^4.3.2",
     "gulp-plumber": "^1.2.0",
     "gulp-rename": "^1.2.2",
-    "gulp-responsive": "^2.10.0",
+    "gulp-responsive-images": "0.0.3",
     "gulp-uglify": "^3.0.0"
   },
   "dependencies": {
